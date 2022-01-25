@@ -111,4 +111,34 @@ buildPhrase("hello", "world")
 console.log("The total is " + total)
 console.log("The sentence says " + sentence)
 
-//* 
+/* Comparison Operators:
+
+<   - less than
+>   - greater than
+<=  - less than or equal to
+>=  - greater than or equal to
+
+==  - equal to loose equality (loose equality compares by converting to a   common type and than checking equality between them.)
+
+=== - equal to strit equality (strict equality compares to or more operands by checking equality bewtween values as well as their types.)
+
+!=  - not equal (loose equality)
+!== - not equal value or not equal type (strict equality)
+*/
+
+
+// Template Literals:
+
+let variable = "Hello"
+
+// the old way
+// let greeting = (variable + " ,World!")
+
+// the new way
+let greeting = (`${variable} ,World!`)
+
+console.log(greeting)
+
+// Higher Order Functions:
+
+// forEach, .filter, .map
