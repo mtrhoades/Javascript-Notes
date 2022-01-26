@@ -139,6 +139,189 @@ let greeting = (`${variable} ,World!`)
 
 console.log(greeting)
 
-// Higher Order Functions:
 
+// Higher Order Functions:
 // forEach, .filter, .map
+
+// forEach functions are used to:
+// (run a callback function for each element in an array.)
+
+//* A callback function is a function you pass into another function.
+
+function forEach(array, callback) {
+    for(let i = 0; i < array.length; i++) { 
+// run a for loop within the forEach function to make whatever array you want inside the argument when invoking it.
+        let number = array[i] // made variable for a single number in whatever array is made out of i within the arguments of invoking it.
+        callback(number) // callsback each number in the array when it is invoked below.
+    }
+}
+forEach([1, 2, 3], function(number) { // arguments an array of [1, 2, 3], and the callback function of the variable 'number' made above.
+    console.log('iteration', number) // consoles out iteration 1, 2, & 3
+});
+
+
+
+// OTHER EXAMPLES OF forEach METHOD:
+
+// Array
+const fruits = ['apple', 'banana', 'carrot'];
+
+// forEach Method + Anonymous function
+fruits.forEach(function(i) {
+    console.log(i)
+});
+
+// forEach Method + Anonymous Arrow function with curly braces
+fruits.forEach((i) => {
+    console.log(i)
+});
+
+// forEach Method + Anonymous Arrow function WITHOUT curly braces
+fruits.forEach((i) => console.log(i));
+
+
+
+// this. keyword:
+// references the array, instead of a parameter.
+// replace array or array name with keyword => this.
+
+/*
+function forEach(callback) {
+    for(let i = 0; i < this.length; i++) {
+        let number = this[i]
+        callback(number)
+    }
+}
+*/
+
+// Arrow Functions: these do the same thing as functions but with less code.
+
+/* Initial function
+function addsNumbers(a, b) {
+    return a + b;
+}
+
+1. Refactor to an arrow function with curly braces
+const addsNumbers = (a, b) => {
+    return a + b;
+}
+
+2. Refactor arrow function WITHOUT curly braces */
+const addsNumbers = (a, b) => a + b; // with no curly braces, return is implied.
+
+const result = addsNumbers(3, 5)
+
+console.log(`The result is ${result}`) // consoles out the number 8 using template literals
+
+
+
+
+/* Creating Classes in Javascript:
+
+A class is a the blueprint we write so we can build objects.
+We can reuse the same class to create many objects.
+
+class Car {
+
+}
+
+* The class name is always Capitalized.
+
+Classes have fields to encapusulate our data in:
+
+class Car {
+    make;
+    model;
+    color;
+}
+
+// the 'new' keyword represents an object, and is used when instantiating a new instance of the class.
+
+
+
+
+/* Asychronous Code:
+
+Asynchronous logic is expressed by:
+1. callback  2. promises  3.async/await
+
+* Asychronous logic is logic that allows the program to do other things while it waits in the background to run later.
+
+Using the 'wait' function:
+
+const character = createCharacter('assets/green-character.gif')
+
+move character east:
+character.walkEast()
+
+make character wait 1500 miliseconds before making next move:
+wait(1500)
+
+^blocks all other code and just waits
+*/
+
+// Use setTimeout function instead.
+
+// Using setTimeout function:
+
+console.log('a');
+console.log('b');
+
+setTimeout(() => {
+    console.log('c'); // console logs 'c' after 2000 miliseconds.
+}, 2000);
+
+console.log('d')
+
+// walkEast function:
+
+const moveEast = (time) => {
+    console.log('Moving east');
+
+    setTimeout(() => {
+        console.log('Stop moving');
+    }, time);
+};
+
+moveEast(1000); // consoles 'Moving East' twice immeadiatley
+moveEast(2000); // consoles 'Stop Moving' once after 1000 miliseconds, and than again after 2000 miliseconds
+
+// ^ Look at activity - Web Game part V (Asynchrony with callback functions in github)
+
+// Promises in Asynchrony:
+// Promises turns callback 'hell' into cleaner code.
+
+const greet = () => console.log('hello')
+/* is the same as:
+const greet = () => {
+    console.log('hello')
+}
+*/
+// invoke it:
+greet();
+
+
+const movesEast = () => {
+    console.log('Moving East');
+
+    setTimeout(() => {
+        console.log('Stop Moving');
+    }, 5000);
+ };
+
+const movesNorth = () => {
+    console.log('Moving North');
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('Stop Moving');
+        }, 5000);
+    });
+};
+
+movesEast();
+movesNorth();
+    // .then((command) => {
+    //     console.log(command);
+    // });
+
