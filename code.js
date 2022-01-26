@@ -46,6 +46,20 @@ if (10 < 5) {
     console.log("this code will not run becuase it is false.")
 }
 
+// else if statements:
+// *The order of how 'if else' and 'else if' statements is important.
+
+function testNums(num) {
+if (num > 15) {
+    return "Bigger than 15";
+} else if (num < 5) {
+    return "Smaller than 5";
+} else {
+    return "Between 5 and 15";
+}
+}
+console.log(testNums(7)) // consoles out "Between 5 and 15".
+
 
 /* Scoping:
 
@@ -108,23 +122,62 @@ let sentence = buildPhrase("Hello", "World!")
 addNumber(3, 5)
 buildPhrase("hello", "world")
 
-console.log("The total is " + total)
-console.log("The sentence says " + sentence)
+console.log("The total is " + total);
+console.log("The sentence says " + sentence);
 
 /* Comparison Operators:
 
-<   - less than
->   - greater than
-<=  - less than or equal to
->=  - greater than or equal to
+<   - less than, (converts data types when comparing.)
+>   - greater than, (converts data types when comparing.)
+<=  - less than or equal to, (converts data types when comparing.)
+>=  - greater than or equal to, (converts data types when comparing.)
 
-==  - equal to loose equality (loose equality compares by converting to a   common type and than checking equality between them.)
+==  - equal to loose equality (loose equality compares by converting to a common type and than checking equality between them.)
 
-=== - equal to strit equality (strict equality compares to or more operands by checking equality bewtween values as well as their types.)
+=== - equal to strit equality (strict equality compares two or more operands by checking equality bewtween values as well as their types.* It does NOT perform a data type conversion)
 
-!=  - not equal (loose equality)
-!== - not equal value or not equal type (strict equality)
-*/
+!=  - not equal (loose equality, converts data types)
+!== - not equal value or not equal type (strict equality, does NOT convert data types)
+
+The logical 'and' operator:
+&&  - returns true if and only if the operands to the left and right of it are true. Same thing as an 'if' statement nested into another 'if' statement.
+EXAMPLE */
+
+function testNum(num) {
+    if (num > 5) {
+    if (num < 10) {
+        return "Yes";
+    }
+}
+return "No";
+}
+console.log(testNum(6)) // consoles out "Yes".
+
+// ^ is the same thing as:
+
+function testNum(num) {
+    if (num > 5 && num < 10) { // uses the && instead of two 'if' statements.
+        return "Yes";
+    }
+    return "No";
+}
+console.log(testNum(9)); // consoles out "Yes".
+
+/* The logical 'or' operator:
+||  - returns true if either of the operands is true, Otherwise it returns false. */
+
+// EXAMPLE
+
+function testNum(num) {
+if (num > 10 || num < 5) {
+    return "No";
+}
+return "Yes";
+}
+
+console.log(testNum(11)); // consoles out "No"
+
+
 
 
 // Template Literals:
