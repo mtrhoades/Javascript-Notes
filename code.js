@@ -235,8 +235,28 @@ class Car {
     color;
 }
 
-// the 'new' keyword represents an object, and is used when instantiating a new instance of the class.
+the 'new' keyword represents an object, and is used when instantiating a new instance of the class.
 
+Constructor Method:
+is called each time we instatiate a new object. */
+
+class Car {
+    constructor(make, model, color) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+    }
+    CarInfo() {
+        console.log("Make: ", + this.make + ", " + "Model: " + this.model + ", " +"Color: ", + this.color)
+    }
+    drive() {
+        console.log("Drive");
+    }
+}
+let newJaguar = new Car('Jaguar', 'Turbo XE', 'Black');
+newJaguar.drive();
+// ^ consoles out "Drive"
+newJaguar.CarInfo()
 
 
 
