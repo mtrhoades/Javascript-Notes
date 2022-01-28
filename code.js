@@ -9,9 +9,26 @@ Arrays: ["dog", "cat", "bird"] or [200, 623, -29] // starts at 0 index.
         .push - adds item to end of array.
         .pop - minus item from end of array.
         .concat - merges two or more arrays together.
+        * All ARRAYS USE SQUARE BRACKET NOTATION. []
 Objects: {name: "James", job: "software engineer"}
          {length: 20, width: 30} // objects have key: value pairs.
-*/
+         * ALL OBJECTS USE DOT NOTATION (.) OR SQUARE BRACKET NOTATION [] TO ACCESS PROPERTIES WITHIN AN OBJECT.
+         * key = property.
+        - Use the dot notation (.) or square bracket notation [] to create new properties of an object.(new key: value pairs)
+        - Use delete:*/
+// EXAMPLE of using delete in objects:
+
+const ourDog = {
+    name: "Ruckus",
+    legs: 4,
+    tails: 1,
+    friends: ["people", "other dogs"],
+    bark: "Woof!"
+}
+delete ourDog.tails;
+
+console.log(ourDog); // consoles out the above object ourDog without the "tails" property.
+
 // other things with data types:
 
 // typeof - helps determine data type
@@ -59,6 +76,76 @@ if (num > 15) {
 }
 }
 console.log(testNums(7)) // consoles out "Between 5 and 15".
+
+// * if else chains can be replaced with switch statments.
+
+// EXAMPLE:
+
+let answers = "";
+
+function forSwitchCase(val) {
+if (val === 1) {
+    answers = "a";
+} else if (val === 2) {
+    answers = "b";
+}else {
+    answer = "c";
+
+}
+return answers;
+}
+console.log(forSwitchCase(1));
+
+// Now the above example can be replaced with switch case:
+
+function forSwitchCase(val) {
+switch(val) {
+    case 1:
+    answers = "a";
+        break;
+    case 2:
+    answers = "b";
+        break;
+    default:
+    answers = "c";
+}
+return answers;
+}
+console.log(forSwitchCase(3));
+
+
+// ANOTHER EXAMPLE OF SWITCH CASE WITH COUNTING CARDS:
+
+let count = 0;
+
+function cc(card) {
+  // Only change code below this line
+switch (card) {
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+  case 6:
+  count ++
+    break;
+  case 10:
+  case 'J':
+  case 'Q':
+  case 'K':
+  case 'A':
+  count --
+    break;
+}
+if (count > 0) {
+  return (`${count} Bet`)
+} else {
+  return (`${count} Hold`)
+}
+
+}
+
+console.log(cc(2), cc(3), cc(7), cc('K'), cc('A'));
+// consoles out 1 Bet, 2 Bet, 2 Bet, 1 Bet, 0 Hold
 
 
 /* Scoping:
@@ -299,7 +386,7 @@ class Car {
         this.model = model;
         this.color = color;
     }
-    CarInfo() {
+    carInfo() {
         console.log("Make: ", + this.make + ", " + "Model: " + this.model + ", " +"Color: ", + this.color)
     }
     drive() {
@@ -309,7 +396,7 @@ class Car {
 let newJaguar = new Car('Jaguar', 'Turbo XE', 'Black');
 newJaguar.drive();
 // ^ consoles out "Drive"
-newJaguar.CarInfo()
+newJaguar.carInfo()
 
 
 
@@ -398,3 +485,118 @@ movesNorth();
     //     console.log(command);
     // });
 
+
+// Making a function for validating a pin number by using only 4 or 6 digits in length.
+
+function validatePIN (pin) {
+    if  (pin.length === 6 || pin.length === 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log(validatePIN("3975")); // Has to be a "string" value to work.
+
+// Below is the same code but with added code for typing in other characters other than number values for a pin number.
+
+function validatePINs (pin) {
+    if (!(typeof pin === "string" && !~pin.indexOf('.') && !isNaN(Number(pin)) && (pin.length === 4 || pin.length === 6))) {
+        return false;
+     } else {
+        return true;
+     }
+  }
+  console.log(validatePINs("99k9")); // Still has to be in "string" value to work.
+
+
+// More Asynchronization:
+
+function doChores() {
+    console.log("Doing Chores."); // happens 1st.
+    return new Promise ((resolve) => { // everytime you create a new Promise, use resolve as the parameter.
+        resolve()
+    })
+}
+
+doChores()
+    .then(() => { // chain .then to the invoke.
+        console.log("Let's go out and eat.") // happens 2nd.
+    });
+
+
+// sleep functions:
+
+const sleep = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+
+        }, 1000);
+    });
+}
+
+
+// ^ is the same as below: (showed different variable - sleep vs sleeps to show difference.)
+
+const sleeps = () => {
+    return new Promise((resolve)  => {
+        setTimeout(resolve, 1000);
+    });
+}
+
+// async/await functions:
+
+function sleeper() {
+    return new Promise ((resolve) => {
+        resolve('hello')
+    });
+}
+
+async function wellingtonEats() {
+    await sleeper(); // waits until the promise above is resolved.
+
+    console.log('Eat Meat!');
+
+    return "$3.50";
+}
+
+console.log(wellingtonEats());
+
+// Asyncronous vs Synchronous:
+// Wait        vs. Don't wait
+
+// * await pairs with async functions.
+
+// * Look up JS-Web-game-part-7 in github to reference.
+
+
+
+// Concurrency with Promise.all:
+
+// Concurrency is using asynchronous logic to run mutliple processes at the same time.
+
+// * Concurrency is not Parallelism
+
+// Concurrency is implemented by software, parallelism is implemented by hardware.
+
+// Promise.all:
+
+function washDishes() {
+    return new Promise((resolve) => {
+        resolve('Done with dishes');
+    });
+}
+
+function walkDog() {
+    return new Promise((resolve) => {
+        resolve('Done with walking dog');
+    });
+}
+
+const promise = Promise.all([washDishes(), walkDog()]);
+
+// const chores = await promise;
+// ^ only works in async functions, would have to create an async function.
+
+promise.then((value)=> {
+    console.log(value);
+});
