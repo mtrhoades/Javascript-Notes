@@ -6,9 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link src href="styles.css" rel="stylesheet">
-    <script src="code.js"></script>
+    
 </head>
 <body>
     <button class = "myBtn">Click Me</button>
+
+<button onclick="alert"('inline')></button> 
+<!-- ^ Inline Javascript-->
+
+    <script>
+        console.log('body');
+    </script>  
+<!-- Put script tags at end of body-->
+
+
+<div id="container">
+    <h1 id="h1">This is my h1 tag!</h1>
+
+
+</div>
+
+<script src="code.js"></script>
+<!--^ This script source tag needs to be at the end of body tag in HTML to make sure the HTML code gets read first and than the javascript code runs.-->
 </body>
+
 </html>

@@ -266,7 +266,6 @@ console.log(testNum(11)); // consoles out "No"
 
 
 
-
 // Template Literals:
 
 let variable = "Hello"
@@ -283,10 +282,30 @@ console.log(greeting)
 // Higher Order Functions:
 // forEach, .filter, .map
 
+/** look up file in github:
+ * 
+ * javascript-07-higherOrderFunctions-practice
+ * 
+ */
+
 // forEach functions are used to:
 // (run a callback function for each element in an array.)
 
-//* A callback function is a function you pass into another function.
+//* A callback function is a function you pass as an argument into another function.
+
+//EXAMPLE CALLBACK FUNCTION:
+
+function translate(name, toLanguageFunction) {
+    let translation = toLanguageFunction(name);
+    console.log(translation);
+}
+function toSpanish(name) {
+    if (name === "hello") {
+        return "hola";
+    }
+}
+console.log(translate("hello", toSpanish)); // consoles out "hola"
+
 
 function forEach(array, callback) {
     for(let i = 0; i < array.length; i++) { 
@@ -600,3 +619,101 @@ const promise = Promise.all([washDishes(), walkDog()]);
 promise.then((value)=> {
     console.log(value);
 });
+
+
+
+/* Internal vs. External vs. Inline Javascript:
+
+Internal JS: written inside HTML file with <script></script> tags.
+
+External JS: using an external JS file like the one we are in right now and linking it to HTML file with <script> tag.
+
+^ Link external JS files at END of body in HTML file.
+
+Inline JS is using JS in HTML file but within each HTML element.
+
+Example of Inline:
+
+<button onclick="alert(Inline!');">Click Me</button> 
+
+*/
+
+// Below is an example of the order of functions and invoking it does not matter, it still runs the same.
+
+print();
+
+function print() {
+    console.log(1)
+}
+
+// Selecting an element from HTML by id:
+
+let h1Tag = document.getElementById('h1');
+h1Tag.textContent = 'Something Else'; // changes the text content.
+
+// Selecting an element from HTML by id and used in a function:
+
+function changeColor(newColor) {
+    let elem = document.getElementById('h1');
+    elem.style.color = newColor; // changes the text color.
+}
+
+changeColor('red');
+
+// Giving an element a class or id name in javascript:
+
+let div = document.createElement('div');
+div.id = 'content';
+div.className = 'note';
+
+console.log(div.id) 
+
+// using .innerHTML:
+
+const containerDiv = document.querySelector('#container');
+
+const h1 = document.createElement('h1');
+h1.innerHTML = "This is a heading";
+
+containerDiv.appendChild(h1);
+// ^ creates a new h1 element with content.
+
+// append Child vs append:
+// append is more verstatile than appendChild.
+
+containerDiv.append("This is a container");
+
+// using .remove to remove an element:
+
+// containerDiv.remove(h1)
+
+// ^ removes whole containerDiv.
+
+// using setAttribute:
+
+// h1.className = 'heading';
+
+// or...
+
+h1.setAttribute('id', 'heading'); // sets the attribute for element in javascript for the HTML file.
+
+
+let header = document.createElement('h1');
+header.id = 'header1';
+header.textContent = "Warranty Information";
+header.innerHTML = "Warranty Information";
+document.body.append(header);
+// ^ adds h1 Warranty Information
+
+let firstNameLabel = document.createElement('label');
+firstNameLabel.id = 'firstname';
+firstNameLabel.innerHTML = "First Name";
+document.body.append(firstNameLabel);
+// ^ adds label First Name
+
+let firstNameInput = document.createElement('input');
+firstNameInput.id = 'firstname';
+firstNameInput.innerHTML = "First Name";
+document.body.append(firstNameInput);
+// ^ adds input box for label First Name
+
