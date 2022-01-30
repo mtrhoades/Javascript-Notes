@@ -717,3 +717,7 @@ firstNameInput.innerHTML = "First Name";
 document.body.append(firstNameInput);
 // ^ adds input box for label First Name
 
+// ^ comes from github file:
+// javascript-06-dom-practice
+
+
