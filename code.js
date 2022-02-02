@@ -15,7 +15,7 @@ Objects: {name: "James", job: "software engineer"}
          * ALL OBJECTS USE DOT NOTATION (.) OR SQUARE BRACKET NOTATION [] TO ACCESS PROPERTIES WITHIN AN OBJECT.
          * key = property.
         - Use the dot notation (.) or square bracket notation [] to create new properties of an object.(new key: value pairs)
-        - Use delete:*/
+        - Use delete */
 // EXAMPLE of using delete in objects:
 
 const ourDog = {
@@ -28,6 +28,21 @@ const ourDog = {
 delete ourDog.tails;
 
 console.log(ourDog); // consoles out the above object ourDog without the "tails" property.
+
+// using .hasOwnProperty - is a method to return a boolean indicating whether the object has the specified property as its own property in the object. (NOT inheriting it)
+
+// EXAMPLE:
+
+const recordCollection = {
+    2548: {
+      albumTitle: 'Slippery When Wet',
+      artist: 'Bon Jovi',
+      tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    }
+};
+console.log(recordCollection[2548].hasOwnProperty("artist")); // consoles out "true", also uses square bracket notation to grab the nested object of id - 2548 within the object recordCollection to find if it has a property of "artist".
+
+
 
 // other things with data types:
 
@@ -60,7 +75,7 @@ else (false) {
 if (10 < 5) {
     console.log("this code will run because 10 is greater than 5")
 }else {
-    console.log("this code will not run becuase it is false.")
+    console.log("this code will show that it is false.")
 }
 
 // else if statements:
@@ -119,7 +134,6 @@ console.log(forSwitchCase(3));
 let count = 0;
 
 function cc(card) {
-  // Only change code below this line
 switch (card) {
   case 2:
   case 3:
@@ -588,14 +602,15 @@ console.log(wellingtonEats());
 // * Look up JS-Web-game-part-7 in github to reference.
 
 
-
-// Concurrency with Promise.all:
+// Concurrency uses Promises and async/await.
 
 // Concurrency is using asynchronous logic to run mutliple processes at the same time.
 
 // * Concurrency is not Parallelism
 
 // Concurrency is implemented by software, parallelism is implemented by hardware.
+
+// Concurrency with Promise.all:
 
 // Promise.all:
 
@@ -670,7 +685,7 @@ console.log(div.id)
 
 // using .innerHTML:
 
-const containerDiv = document.querySelector('#container');
+const containerDiv = document.querySelector('#container'); // Use # for grabbing class names. Use . for grabbing id names.
 
 const h1 = document.createElement('h1');
 h1.innerHTML = "This is a heading";
@@ -697,6 +712,11 @@ containerDiv.append("This is a container");
 
 h1.setAttribute('id', 'heading'); // sets the attribute for element in javascript for the HTML file.
 
+let mainSection = document.createElement('section') // creates section tag in HTML
+let h2 = document.createElement('h2')// creates h2 tag in HTML
+h1.textContent = 'Coding is Fun!' // adds text to h2 tag content
+mainSection.appendChild(h1) // appends h2 tag to section tag
+document.body.append(mainSection) // appends section tag to document to actually show it in the browser window.
 
 let header = document.createElement('h1');
 header.id = 'header1';
@@ -719,5 +739,82 @@ document.body.append(firstNameInput);
 
 // ^ comes from github file:
 // javascript-06-dom-practice
+
+
+// Using addEventListener:
+
+let header1 = document.createElement('h1')
+header1.textContent = 'Hello World'
+document.body.append(header1)
+
+header1.addEventListener('dblclick', function() {
+	alert("I was double-clicked!");
+});
+// ^ after double clicking on header1 it pops up message saying "I was double-clicked!"
+
+
+// Event Propagation:
+
+// Event Bubbling - inner to outer
+// Event Capturing - outer to inner
+
+//EXAMPLE:
+
+// let div2 = document.querySelector('.div2');
+// let div1 = document.querySelector('.div1');
+
+// div1.addEventListener('click', () => {
+//     console.log('Div1 is clicked');
+// }, true);
+
+// div2.addEventListener('click', () => {
+//     console.log('Div2 is clicked');
+// });
+
+
+// preventDefault: *for working with forms.
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // something else
+    // validation
+    // send the form to the backend
+});
+
+// stopPropagation: stops bubbling and/or capturing.
+
+let div2 = document.querySelector('.div2');
+let div1 = document.querySelector('.div1');
+
+div1.addEventListener('click', (event) => {
+    console.log('Div1 is clicked');
+    event.stopPropagation();
+}, true);
+
+div2.addEventListener('click', (event) => {
+    console.log('Div2 is clicked');
+    event.stopPropagation();
+}, true);
+
+// ^ only allows console log of "div1 is clicked" even when div2 is clicked as supposed to above example of same thing without stopPropagation.
+
+// Target Element: targets each specific div whether it's nested in other divs or not.
+
+const ul = document.querySelector('ul');
+
+ul.addEventListener('click', (event) => {
+    event.target.classList.toggle('strike-through'); // allows to be clicked on to strike through and go back to not striked through, below only allows to strike through, not go back.
+    // event.target.classList = "strike-through";
+});
+
+
+// Regular Expressions (Regex):
+// is a way to search through text in a very advanced way.
+// used for find and replace, among lots of other things.
+// used for password inputs of certain amount of characters, certain digits, special characters, etc.
+// used for form validations - phone numbers.
 
 
