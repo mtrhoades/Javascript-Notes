@@ -188,6 +188,13 @@ const = (block-scoped/local-scope) can NOT change the value of this variable lat
 
 //* For Loops:
 
+// for(let i = 0; i < 1; i++) {
+    // code to run goes here;
+// }
+// ^ (let i = 0) is initialization statement,
+// ^ (i < 1) is the condition statement,
+// ^ (i++) is the final
+
 // example
 
 for(let i = 0; i < 1; i++) {
@@ -197,6 +204,57 @@ for(let i = 0; i < 1; i++) {
 for(let i = 0; i < 5; i++) {
     console.log("the console will write this 5 times")
 }
+
+// for loops for nested arrays:
+
+// EXAMPLE:
+
+function multiplyAll(arr) { // arr is the parameter, which links to each argument in the array of multiplyAll.
+
+    let product = 1; // start off at 1 since we are multiplying everything together.
+  
+    for (let i = 0; i < arr.length; i++) { // first for loop for the whole array of multiplyAll
+      for (let j = 0; j < arr[i].length; j++) { // second for loop for each array inside of multiplyAll array.
+        product = product * arr[i][j]; // product/total must equal to the parameter/argument of each for loop, i and j.
+      }
+    }
+  
+    return product; // must use return since this is all inside of a function.
+  }
+  
+  console.log(multiplyAll([[1, 2], [3, 4], [5, 6, 7]])); // consoles out total of 5040.
+
+// While Loops:
+// runs while a specified condition is true and stops once that condition is no longer true.
+
+// EXAMPLE:
+
+const myArray = [];
+
+let i = 5;
+
+while (i >= 0) {
+  myArray.push(i);
+  i--;
+}
+
+console.log(myArray) // consoles out [5, 4, 3, 2 ,1, 0]
+
+// Do While loops:
+
+// it will first DO one pass of the code inside the loop no matter what, and then continue to run the loop WHILE the specified condition evalutates to true.
+
+// EXAMPLE:
+
+const ourArray = [];
+let t = 10; // had to use t as variable, i was already declared in above example.
+
+do {
+  ourArray.push(t);
+  t++;
+} while (t < 5) 
+
+console.log(ourArray) // consoles out [10] because the condition of while t < 5 does not go further than the original variable decleration of t = 10.
 
 //* Functions:
 
@@ -726,13 +784,14 @@ document.body.append(header);
 // ^ adds h1 Warranty Information
 
 let firstNameLabel = document.createElement('label');
-firstNameLabel.id = 'firstname';
+firstNameLabel.id = 'firstName';
 firstNameLabel.innerHTML = "First Name";
 document.body.append(firstNameLabel);
 // ^ adds label First Name
 
 let firstNameInput = document.createElement('input');
-firstNameInput.id = 'firstname';
+firstNameInput.id = 'firstName';
+firstNameInput.className = "firstName"
 firstNameInput.innerHTML = "First Name";
 document.body.append(firstNameInput);
 // ^ adds input box for label First Name
@@ -816,5 +875,20 @@ ul.addEventListener('click', (event) => {
 // used for find and replace, among lots of other things.
 // used for password inputs of certain amount of characters, certain digits, special characters, etc.
 // used for form validations - phone numbers.
+
+
+// Query Selector & jQuery Historical Overview:
+
+// jQuery:
+// Has fewer lines of code, more functionality baked into VS code.
+// Uses $ a lot to create less lines of code. 
+// * Always starts with $.
+// EXAMPLE: look at github file: JS-jQuery-Practice
+
+
+
+
+
+
 
 
