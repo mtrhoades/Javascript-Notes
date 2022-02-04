@@ -259,7 +259,10 @@ console.log(ourArray) // consoles out [10] because the condition of while t < 5 
 //* Functions:
 
 // (refer to example #1 below)
-// functions consist of the function keyword (function), a function name (addNumber), parameters (a, b) which are always in parentheses, code to run in curly brackets {}, and an invoke (addNumber(3, 5)), which runs the code with the specific parameters set.
+// functions consist of the function keyword (function), a function name (addNumber), parameters (a, b) which are always in parentheses, code to run in curly brackets {}, and an invoke/call (addNumber(3, 5)), which runs the code with the specific parameters/arguments set.
+
+// * anything after return does not get ran, return ends the function.
+// * every function must have a return statement, otherwise it logs undefined.
 
 // example
 
@@ -277,7 +280,7 @@ function buildPhrase(word1, word2) {
 let total = addNumber(3, 5);
 let sentence = buildPhrase("Hello", "World!")
 
-// invoking functions
+// invoking/calling functions
 addNumber(3, 5)
 buildPhrase("hello", "world")
 
@@ -458,7 +461,7 @@ class Car {
 
 * The class name is always Capitalized.
 
-Classes have fields to encapusulate our data in:
+Classes have fields to encapsulate our data in:
 
 class Car {
     make;
@@ -870,25 +873,126 @@ ul.addEventListener('click', (event) => {
 });
 
 
-// Regular Expressions (Regex):
-// is a way to search through text in a very advanced way.
-// used for find and replace, among lots of other things.
-// used for password inputs of certain amount of characters, certain digits, special characters, etc.
-// used for form validations - phone numbers.
+/* Regular Expressions (Regex):
+ a sequence of characters that shows a search pattern.
+ is a way to search through text in a very advanced way.
+ used for find and replace, among lots of other things.
+ used for password inputs of certain amount of characters, certain digits, special characters, etc.
+ used for form validations - phone numbers.
+
+ . matches any single character.
+ ? matches 0 or 1 occurrence.
+ * matches 0 or more of the preceeding character.
+ +/- matches 1 or more or less of the preceeding character.
+ /d matches any single digit.
+ /D matches any character that is not a digit.
+ /w matches any alphanumeric character and underscore.
+ /W matches any character that is not a word character.
+ /s matches a white space character.
+ /S matches a single character other than white space.
+ $ matches the end of a string.
+ [^A-Z] matches anything that is not an uppercase letter.
+   When using the .replace() method the original string is NOT changed.
+   
+*/
 
 
-// Query Selector & jQuery Historical Overview:
+/* jQuery:
 
-// jQuery:
-// Has fewer lines of code, more functionality baked into VS code.
-// Uses $ a lot to create less lines of code. 
-// * Always starts with $.
-// EXAMPLE: look at github file: JS-jQuery-Practice
+ Was created to handle cross-browser compatibility issues.
+ Used as a function that makes use of expressions to find out matching elements from a DOM based on the given criteria.
+ Has fewer lines of code, more functionality baked into VS code.
+ Uses $ a lot to create less lines of code. 
+ * Always starts with $.
+ jQuery is a subset of Javascript.
+
+ EXAMPLE: look at github file: JS-jQuery-Practice
+
+*/
+
+
+// Recursion:
+
+// is the concept that a function can be expressed in terms of itself.
+// a function that calls itself.
+
+// EXAMPLE 1: of a function with a for loop switched to a recursive function.
+
+// regular function with for loop for a countdown.
+
+function countDown(n) {
+    for (let i = n; i > 0; i--) {
+        console.log(i)
+    }
+    console.log('Hooray!')
+}
+countDown(3)
+
+// now ^ that same function as a recursive function:
+
+function countDownRecursive(n) {
+    if (n <= 0) { // 2. is 3 <= 0? No it's not so it skips the below code and logs 3. This is the condition that exits the function immeadiatley also called the guard clause: (n <= 0).
+        console.log('Hooray!')
+        return
+    }
+    console.log(n)
+    countDownRecursive(n - 1) // 3. than we do this call, 3 - 1 = 2. now is 2 <= 0? like above its a No, so it logs 2. And it loops back to 2 - 1 = 1, is 1 <= 0? No so it logs 1. Now do the loop again, 1 - 1 = 0, now is 0 <= 0? Yes, so that stops the loop and returns with the console.log('Hooray!').
+}
+countDownRecursive(3) // 1. calls the number 3 inside the function countDownRecursive.
+// 4. each call returns itself so it looks like this to the computer:
+/*
+countDownRecursive(3)
+    countDownRecursive(2)
+        countDownRecursive(1)
+            countDownRecursive(0)
+            return
+        return
+    return
+return
+
+*/
+
+// EXAMPLE 2:
+
+function sumRange(n) {
+    let total = 0;
+    for (let i = n; i > 0; i--) {
+        total += i
+    }
+    return total
+}
+
+// recursive:
+
+function sumRangeRecursive(n, total = 0) {
+    if (n <= 0) { // guard clause: when (n <= 0) we want to exit the loop, which is opposite of above in the for loop: (i > 0).
+        return total
+    }
+    return sumRangeRecursive(n - 1, total + n )
+}
+sumRangeRecursive(3, 0) // defaults total to 0. You don't really have to pass that in, it's already 0. So now do the return code of (n - 1, total + n), so 3 - 1 = 2, and the total: 0 + 3 = 3.
+    sumRangeRecursive(2, 3) // so do it again, is 2 <= 0? No so run the return code: 2 - 1 = 1, and total: 3 + 2 = 5.
+        sumRangeRecursive(1, 5) // do it again, is 1 <= 0? No so run the return code: 1 - 1 = 0 and total: 5 + 1 = 6
+            sumRangeRecursive(0, 6) // this exits the loop and stops the code because 0 <= 0.
+            // so ^ this returns a total of 6 in the console, when 3 is invoked a n. like so:
+console.log(sumRangeRecursive(3));
 
 
 
+/* Performance:
+
+- How quickly the pages of websites load and display in the browser.
+- Why does it matter?
+    - It impacts conversion rates.
+    - it affects user experience.
+    - Affects traffic.
+- 0 through 4 seconds is the is the ideal page load time.
+- Javascript issues are a factor of performance as well as: Unoptimized images, Excessive HTTP requests, and Poorly written scripts.
+- For Javascript issues:
+    - Use asynchronous code as a suggested route to avoid any long page load times.
+example: 
 
 
-
-
+    - Make the code as small as possible, Audit the code to remove any unnecessary code or change it into smaller pieces of code.
+*/
 
