@@ -287,6 +287,12 @@ buildPhrase("hello", "world")
 console.log("The total is " + total);
 console.log("The sentence says " + sentence);
 
+
+// Lookup functions:
+
+
+
+
 /* Comparison Operators:
 
 <   - less than, (converts data types when comparing.)
@@ -427,6 +433,17 @@ function forEach(callback) {
     }
 }
 */
+
+// .filter: function that filters out arrays for specific parts.
+
+// EXAMPLE:
+
+// * definitly look up on github - javascript-10-superhero-filter-function-practice file for better examples.
+
+// addHero(heroes.filter((hero => hero.powers.canFly)));
+
+// ^ above is basically a template for .filter functions, where heroes is the array, hero is the parameter for each individual hero/person, and .powers.canFly is accessing certain parts in an individuals object (hero) in the main array of heroes.
+
 
 // Arrow Functions: these do the same thing as functions but with less code.
 
@@ -996,3 +1013,226 @@ example:
     - Make the code as small as possible, Audit the code to remove any unnecessary code or change it into smaller pieces of code.
 */
 
+
+// fetch: 
+// is a function that makes HTTP requests.
+// is asynchronous, and returns a promise.
+
+// EXAMPLES: below is great example of the pattern.
+
+// async function getReddit() {
+//     let response = await fetch('https://www.reddit.com/');
+//     let resultObject = await response.json();
+
+//     console.log(resultObject)
+// }
+
+
+async function getExample() {
+    const response = await fetch('https://random.dog/woof.json');
+    const result = await response.json(); // unpacks it
+    const url = result.url;
+
+    const img = document.createElement('img')
+    img.src = url
+    document.body.append(img);
+    
+    console.log(typeof result);
+    console.log(result);
+}
+getExample();
+
+// ^ uses json and data to display an image from above url. (works only with certain images, they are random hence the url name.)
+
+//.JSON: stored on server NOT local
+// Javascript Object Notation
+// {
+//     "numOfLegs": 4,
+//     "name": "Suzy" // can only use "" NOT '' for JSON objects!
+// }
+
+// fetch sends HTTP requests
+
+/* Four properties of HTTP requests:
+    1. URL
+    2. Method
+    3. Header
+    4. Body
+
+- POST, PATCH, PUT:
+- are HTTP requests you can use to send a 'body' with your HTTP requests.
+
+* You can NOT use GET & DELETE to send a 'body' with your HTTP requests.
+
+- POST: to add data
+- PATCH: to update data
+- GET: retrieves data
+- PUT: replaces data
+- DELETE: removes data
+    
+    */
+   
+   //  * json.stringify - turns object into a string
+
+// * how to start server: (in terminal)
+
+// npm start (npm = NODE PACKET MANAGER)
+
+// * how to kill the server port:
+
+// npx kill-port 9001 // use port number currently using
+
+// * you can NOT use the same port for multiple files.
+
+// www.npmjs.com
+
+// ** npm install bootstrap **
+// ** npm install lodash **
+
+// ^ Use for a bunch of code (packages) already built and installed.
+
+
+
+async function changeBookName(){
+	const response = await fetch('http://localhost:3000/api-docs.html', {
+    method: 'PATCH', // get data from the server
+    headers: {
+    	'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    	title: 'The Shinobi Initiative',
+    	})
+    })
+    
+    const result = await response.json();
+	console.log(result);
+}
+// changeBookName(); // cannot call the function right now as the url does not work anymore... Just fill it in with a working api link.
+
+// More examples and practice on github file - JS-Building-a-Shared-Counter-Part-2
+
+
+// Third party libraries or bootstrapping for javascript:
+// other developers have written code to solve the same problems for other developers to use in their code.
+
+// ChartJS
+
+// ^ can be added with a script tag copied from the documentation into your HTML file. Once installed, javascript will use the functions, objects, and classes provided in the library.
+// ^ Use just the CDN url and copy it into a script src tag.
+
+// ** Look up EXAMPLE on github file - JS-Stock-Charts **
+
+// ^ shows great examples of pulling stock prices from api and formulating them into certain graphs for comparison.
+
+
+// Maps:
+
+// mapping libraries/api's:
+    // Google maps
+    // Mapbox
+    // Leaflet (foundation of Mapbox)
+//      *(Leaflet can NOT use navigation like google maps does.)
+    // Open Layers
+
+// maps are constructed with layers and tiles.
+// your map will be useless without tiles.
+// reference the map id (#) first and use L.map
+// set the center of the map and zoom level.
+
+/* EXAMPLE:
+
+const myMap = L.map('map', {
+    center: [48.868672, 2.342130],
+    zoom: 12,
+});
+
+*/
+
+// factory functions: are an alternative to classes in javascript when using map api's.
+
+// ** EXAMPLE of using Leaflet map api in github file - JS-Building-an-Interactive-Map **
+
+// Encapsulation:
+// below is all in one object - expenseList
+
+let expenseList = {
+    amounts: [ 100, 200, 350, 500 ],
+    expenses: document.querySelector('ul.expenses'),
+    
+    display: function() {
+        this.amounts.forEach((amount) => {
+            let expenseItem = document.createElement('li');
+            expenseItem.textContent = amount;
+            this.expenses.append(expenseItem);
+            expenseItem.addEventListener('click', () => {
+                // this.clear(); // The this.clear() function gets rid of the whole list when you click on it.)
+                expenseList.clear(); // ^ does the same thing, since they both refer to the same object: expenseList.
+            });
+        });
+    },
+    
+    clear: function() {
+        this.expenses.innerHTML = '';
+    },
+};
+
+let totalExpenses = {
+    log: function () {
+        let expenses = 0;
+        expenseList.amounts.forEach((amount) => {
+            expenses += amount;
+        });
+        console.log(expenses)
+    },
+};
+
+expenseList.display() // consoles out to browser window, NOT THE CONSOLE, the list of expenses. (linked to ul class="expenses" in HTML file.)
+totalExpenses.log(); // consoles out the sum/total of expenses to the console, 1150.
+
+
+
+// Ternary:
+// is basically an if statement
+
+// EXAMPLE:
+
+function timeOfDay(tod) {
+
+// if (tod > 20) {
+//     answer = "late-night snack";
+// } else if (tod > 16) {
+//     answer = "dinner";
+// } else if (tod > 11) {
+//     answer = "lunch";
+// } else {
+//     answer = "breakfast";
+// }
+
+// turned into a ternary:
+
+return tod > 20 ? "late-night snack" : tod > 16 ? "dinner" : tod > 11 ? "lunch" : "breakfast";
+}
+
+// ^ the colons are kind of like the "if false"/else if conditions.
+
+
+//*** Slack github files and recordings from class: ***
+// Destructuring ?????
+// Spread operators ?????
+// Node Modules ????? 
+
+// Profile Lookup functions: (freeCodeCamp)
+
+
+// ********************************************************************************
+// ******* Complete map building and using markers for user location and other locations for restaurants, hotels, coffee shops, markets:
+// look up github file - JS-Activity-Making-A-Map-Using-API *****************
+// *******************************************************************************
+
+
+
+// Let's review how JavaScript makes it to the browser to run:
+
+// A user visits a site by clicking a link or typing in the URL bar.
+// An HTTP request is sent to a server that resides at the URL.
+// The server responds with HTML, CSS, and JavaScript, which the browser parses and runs.
