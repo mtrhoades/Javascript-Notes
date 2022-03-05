@@ -444,6 +444,18 @@ function forEach(callback) {
 
 // ^ above is basically a template for .filter functions, where heroes is the array, hero is the parameter for each individual hero/person, and .powers.canFly is accessing certain parts in an individuals object (hero) in the main array of heroes.
 
+// .map() methods: an array method that returns a new array and takes a callback as a parameter.
+// EXAMPLE:
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+let newDaysArray = days.map((day) => {
+    return day.toUpperCase();
+});
+console.log(newDaysArray)
+
+// ^ same thing as:
+newDaysArray = days.map(day => day.toUpperCase());
+console.log(newDaysArray)
+
 
 // Arrow Functions: these do the same thing as functions but with less code.
 
@@ -463,6 +475,34 @@ const addsNumbers = (a, b) => a + b; // with no curly braces, return is implied.
 const result = addsNumbers(3, 5)
 
 console.log(`The result is ${result}`) // consoles out the number 8 using template literals
+
+
+
+// ************************************************************************************
+/* Interpolated string:
+is the process of evalutating a string literal containing one more placeholders, yielding the result in which the placeholders are replaced with thier corresponding values.
+
+Example:
+
+const greeting8 = (greeting, personName) => `${greeting} ${personName}`
+
+                                            ^ the $ and {} represent the placeholder that gets replaced with corresponding values.
+same thing as hard coding:
+const greeting8 = (greeting, personName) => (greeting + " " + personName)
+
+ ************************************************************************************  */
+
+// Using arrow function .map() with a ternary operator:
+const weekDays = [
+    'Monday', 'Tuesday', 'Wednesday',
+    'Thursday', 'Friday', 'Saturday', 'Sunday'
+  ]
+  
+const bestDaysOfTheWeek = weekDays.map(day => (
+    day[0] === 'S' ? day.toUpperCase() : day ) 
+);
+
+console.log(bestDaysOfTheWeek) // consoles out SATURDAY & SUNDAY in all caps only.
 
 
 
@@ -763,7 +803,7 @@ console.log(div.id)
 
 // using .innerHTML:
 
-const containerDiv = document.querySelector('#container'); // Use # for grabbing class names. Use . for grabbing id names.
+const containerDiv = document.querySelector('#container'); // Use . for grabbing class names. Use # for grabbing id names.
 
 const h1 = document.createElement('h1');
 h1.innerHTML = "This is a heading";
@@ -1215,11 +1255,20 @@ return tod > 20 ? "late-night snack" : tod > 16 ? "dinner" : tod > 11 ? "lunch" 
 
 // ^ the colons are kind of like the "if false"/else if conditions.
 
+// what you want to evaluate ? if true than do this : else do this
+
+// More Ternary examples:
+
+let isSunny = true;
+let activity = isSunny ? "I am going for a walk" : "I will take another nap";
+
+console.log(activity)
+
 
 //*** Slack github files and recordings from class: ***
 // Destructuring ?????
-// Spread operators ?????
-// Node Modules ????? 
+// rest/spread operators ?????
+
 
 // Profile Lookup functions: (freeCodeCamp)
 
@@ -1230,9 +1279,115 @@ return tod > 20 ? "late-night snack" : tod > 16 ? "dinner" : tod > 11 ? "lunch" 
 // *******************************************************************************
 
 
-
 // Let's review how JavaScript makes it to the browser to run:
 
 // A user visits a site by clicking a link or typing in the URL bar.
 // An HTTP request is sent to a server that resides at the URL.
 // The server responds with HTML, CSS, and JavaScript, which the browser parses and runs.
+
+
+
+// ************************************************************
+//CODEWARS PRACTICE:
+
+// multiples of 3 or 5
+// takes any number as parameter and lists all the numbers below it that are divisible by 3 or 5 evenly, than adds them up to equal the sum that would be of all numbers in multiples of 3 & 5 below the number passed in.
+function muliplesOf3Or5(number) {
+    let sum = 0;
+    for (let i = 0; i < number; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+            sum+=i;
+            continue;
+        } else {
+            continue;
+        }
+    }
+    return sum;
+}
+console.log(muliplesOf3Or5(12));
+
+
+// return the opposite integer (negative)
+function opposite(number) {
+    return number * -1
+}
+console.log(opposite(17));
+
+
+// turning number into a string
+function numberToString(num) {
+    let string = num.toString()
+    return string
+}
+console.log(numberToString(78))
+
+
+// reversing a string
+function solution(str){
+    return str.split("").reverse().join("")
+}
+console.log(solution("hello"))
+
+
+
+// Find the largest number in an array:
+// [7, 9, 2, 3, 1]
+// [1, 2, 3, 4]
+
+
+// ************************************************
+// using Math.max with spread operator
+function findTheLargestNumber(array) {
+    return Math.max(...array);
+}
+
+console.log(findTheLargestNumber([7, 9, 2, 3, 1]))
+// ^ 9
+console.log(findTheLargestNumber([1, 2, 3, 4]))
+// ^ 4
+// ********** ^ BEST EXAMPLE ^*************************
+
+
+// OR... using a for loop
+function largestNumber(array) {
+    let max = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+        return max;
+    }
+}
+console.log(largestNumber([7, 9, 2, 3, 1])); // 9
+console.log(largestNumber([1, 2, 3, 4,])); // WHY IS IT  NOT 4??
+console.log(largestNumber([4, 7, 9, 10, 2, 33])) // NOT WORKING FOR LARGEST NUMBER!!
+
+
+// OR... .forEach
+let array = [1, 2, 3, 4]
+let max = 0;
+array.forEach(element => {
+    if (element > max) {
+        max = element;
+    }
+    return max;
+})
+console.log(max) // 4
+
+
+// OR... using .sort
+function findLargestNum(array) {
+    array.sort((a, b) => a - b)
+    return array[array.length - 1]
+}
+console.log(findLargestNum([7, 9, 2, 3, 1])) // 9
+console.log(findLargestNum([33, 55, 22, 55, 56, 77, 99])) // 99
+// *********** ^ SECOND BEST EXAMPLE ^ ***************
+
+
+// OR... using .shift() & .pop()
+// ??????????????????????
+
+
+// Converting booleans to strings "yes" or "no":
+
