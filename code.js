@@ -1265,9 +1265,15 @@ let activity = isSunny ? "I am going for a walk" : "I will take another nap";
 console.log(activity)
 
 
+
 //*** Slack github files and recordings from class: ***
-// Destructuring ?????
-// rest/spread operators ?????
+// Destructuring ?
+// rest/spread operators ?
+
+// * Spread operator: EXPANDS; adds to an existing array and spreads the array out.
+
+// * Rest operator: Can be used as a parameter (...) to go over all arguments passed in, instead of calling each one solely.
+
 
 
 // Profile Lookup functions: (freeCodeCamp)
@@ -1338,7 +1344,7 @@ console.log(solution("hello"))
 // ************************************************
 // using Math.max with spread operator
 function findTheLargestNumber(array) {
-    return Math.max(...array);
+    return Math.max(...array); // spreads the array out to go over each item in the array.
 }
 
 console.log(findTheLargestNumber([7, 9, 2, 3, 1]))
@@ -1385,8 +1391,54 @@ console.log(findLargestNum([33, 55, 22, 55, 56, 77, 99])) // 99
 // *********** ^ SECOND BEST EXAMPLE ^ ***************
 
 
-// OR... using .shift() & .pop()
-// ??????????????????????
+// * Using .shift() & .pop()
+// .shift() removes the firt element (at the zeroeth index) from an array.
+// .pop() removes the last element in an array.
+let fruitas = ['apple', 'mango', 'orange', 'kiwi'];
+let fruitas2 = ['apple', 'mango', 'orange', 'kiwi'];
+console.log(fruitas.pop());
+console.log(fruitas2.shift());
+
+console.log(fruitas);
+console.log(fruitas2);
+
+
+// String Repeat:
+const repeatStr = (num, str) => {
+    let solution = "";
+    while (num > 0) {
+        solution += str
+        num--;
+    }
+    return solution
+}
+console.log(repeatStr(4, "Hi")) // HiHiHiHi
+
+// OR...
+const repeatStrs = (num, str) => {
+    let text = str;
+    for (let i = 0; i < num - 1; i++) {
+        text.concat(str);
+    }
+    return text;
+}
+console.log(repeatStrs(7, "Hello")) // HelloHelloHelloHelloHelloHelloHello
+// NOT WORKING!!
+
+// OR... 
+const repeatString = (num, str) => {
+    return str.repeat(num);
+}
+console.log(repeatString(9, "Hey")) // HeyHeyHeyHeyHeyHeyHeyHeyHey
+
+
+// **** Grabbing 1st letter in string and making uppercase:
+const justFirstLetterCapitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+console.log(justFirstLetterCapitalize('what is up!'))
+
+// ^ charAt() - grabs letters in a string based on index.
 
 
 // Converting booleans to strings "yes" or "no":
