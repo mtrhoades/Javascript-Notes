@@ -1405,7 +1405,7 @@ console.log(fruitas2);
 
 // String Repeat:
 const repeatStr = (num, str) => {
-    let solution = "";
+    solution = "";
     while (num > 0) {
         solution += str
         num--;
@@ -1426,9 +1426,8 @@ console.log(repeatStrs(7, "Hello")) // HelloHelloHelloHelloHelloHelloHello
 // NOT WORKING!!
 
 // OR... 
-const repeatString = (num, str) => {
-    return str.repeat(num);
-}
+repeatString = (num, str) => str.repeat(num);
+
 console.log(repeatString(9, "Hey")) // HeyHeyHeyHeyHeyHeyHeyHeyHey
 
 
@@ -1437,9 +1436,110 @@ const justFirstLetterCapitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 console.log(justFirstLetterCapitalize('what is up!'))
-
 // ^ charAt() - grabs letters in a string based on index.
 
 
+// SUMMATION:
+// summation(2)     --->            1 + 2 = 3
+// summation(3)     --->        1 + 2 + 3 = 6
+// summation(4)     --->   1 + 2 + 3 + 4 = 10
+summation = (num) => {
+    sum = 0;
+    for (let i = 1; i <= num; i++) {
+        sum += i;
+    }
+    return sum + " =" + " summation of " + (sum - (sum - num));
+}
+console.log(summation(10));
+// ^ how can we print to the console 1 + 2 + 3 + 4.... = 45 ?????
+
+
+
 // Converting booleans to strings "yes" or "no":
+boolToWord = (bool) => {
+    return bool ? 'Yes' : 'No'
+    //  (if bool === true) {
+    //     return 'Yes'
+    // } else {
+    //     return 'No'
+    // }
+}
+
+console.log(boolToWord(false)); // 'No'
+console.log(boolToWord(true)); // 'Yes'
+
+// OR... same as:
+boolsToWord = bool => bool ? 'Yes' : 'No';
+
+console.log(boolsToWord(false)); // 'No'
+console.log(boolsToWord(true)); // 'Yes'
+
+
+
+// Sum of only positive numbers in an array:
+positiveSum = (arr) => {
+    sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0) {
+        sum += arr[i]
+        }
+    }
+    return sum
+}
+console.log(positiveSum([3, 7, -1, -99, 92])); // 102
+
+  // OR... same as:
+positiveSums = (arr) => {
+    sum = 0;
+    arr.forEach((num) => num > 0 ? sum += num : 0);
+    return sum
+}
+console.log(positiveSums([3, 7, -1, -99, 92])); // 102
+
+
+
+// Sum of only negative numbers in array:
+negativeSum = (arr) => {
+    sum = 0;
+    arr.forEach((num) => num < 0 ? sum += num : 0);
+    return sum
+}
+console.log(negativeSum([3, 7, -1, -99, 92])); // -100
+
+
+
+// Turn any number into a negative number:
+makeNegative = (num) => {
+    return num > 0 ? -num : num
+}
+console.log(makeNegative(7));
+
+
+
+// Remove first and last letter in a string:
+removeChar = (str) => str.slice(1, -1)
+// when using .slice() method, 1 is the first character and -1 is always the last character in strings.
+console.log(removeChar('Helsinki'));
+
+
+
+// Find the smallest integer in an array:
+findSmallestInt = (array) => {
+    smallest = array[0];
+    for(let i = 0; i < array.length; i++) {
+    if (array[i] <= smallest) {
+        smallest = array[i]
+        }
+    }
+    return smallest
+}
+console.log(findSmallestInt([4, 99, 0, -45, 77])) // -45
+
+// OR... same as:
+findSmallestInteger = (array) => {
+    return Math.min(...array)
+}
+console.log(findSmallestInteger([4, 99, 0, -45, 77])) // -45
+
+
 
