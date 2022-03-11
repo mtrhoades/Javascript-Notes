@@ -1277,6 +1277,48 @@ console.log(activity)
 
 
 // Profile Lookup functions: (freeCodeCamp)
+// Setup
+const contacts = [
+    {
+      firstName: "Akira",
+      lastName: "Laine",
+      number: "0543236543",
+      likes: ["Pizza", "Coding", "Brownie Points"],
+    },
+    {
+      firstName: "Harry",
+      lastName: "Potter",
+      number: "0994372684",
+      likes: ["Hogwarts", "Magic", "Hagrid"],
+    },
+    {
+      firstName: "Sherlock",
+      lastName: "Holmes",
+      number: "0487345643",
+      likes: ["Intriguing Cases", "Violin"],
+    },
+    {
+      firstName: "Kristian",
+      lastName: "Vos",
+      number: "unknown",
+      likes: ["JavaScript", "Gaming", "Foxes"],
+    },
+  ];
+  
+  function lookUpProfile(name, prop) {
+    for(let i = 0; i < contacts.length; i++) {
+      if (contacts[i].firstName === name) {
+        if (contacts[i].hasOwnProperty(prop)) {
+          return contacts[i][prop]
+        } else {
+        return "No such property"
+       }
+     }
+    } 
+    return "No such contact"
+  }
+  
+  console.log(lookUpProfile("Harry", "likes"));
 
 
 // ********************************************************************************
@@ -1453,6 +1495,10 @@ summation = (num) => {
 console.log(summation(10));
 // ^ how can we print to the console 1 + 2 + 3 + 4.... = 45 ?????
 
+// OR... same as:
+summations = num => num * (num + 1) / 2;
+console.log(summations(5))// 15
+
 
 
 // Converting booleans to strings "yes" or "no":
@@ -1495,6 +1541,11 @@ positiveSums = (arr) => {
     return sum
 }
 console.log(positiveSums([3, 7, -1, -99, 92])); // 102
+console.log(positiveSums([-3, -7, -1, -99, -92])); // 0
+
+// OR... same as:
+let possSum = (arr) => arr.reduce((accum, curr) => (curr > 0 ? accum + curr : accum), 0); // accum = 0
+console.log(possSum([4, -8, -9, 2])) // 6
 
 
 
@@ -1543,3 +1594,69 @@ console.log(findSmallestInteger([4, 99, 0, -45, 77])) // -45
 
 
 
+// Square(n) Sum:
+squareSums = (numbers) => {
+    sum = 0;
+    for( let i = 0; i < numbers.length; i++) {
+        sum += numbers[i] **2
+    }
+    return sum
+}
+console.log(squareSums([3, 3, 3])); // 27
+
+// OR... same as:
+squaresSum = numbers => {
+    sum = 0;
+    numbers.forEach((numbers) => {
+        sum += (numbers **2)
+    });
+    return sum
+}
+console.log(squaresSum([2, 4, 6])) // 56
+
+// OR... same as:
+squareSum = (numbers) => {
+    sum = numbers.reduce((acc, curVal) => {
+      return acc + curVal ** 2;
+    }, 0);
+    return sum;
+  }
+console.log(squareSum([1, 2, 2])); // 9
+
+
+
+// Counting Sheep:
+countSheeps = (arrayOfSheep) => {
+    total = 0;
+    arrayOfSheep.forEach((sheep) => {
+        sheep === true ? total += sheep : 0
+    });
+    return total
+}
+console.log(countSheeps(
+    [true,  true,  true,  false,
+    true,  true,  true,  true ,
+    true,  false, true,  false,
+    true,  false, false, true ,
+    true,  true,  true,  true ,
+    false, false, true,  true]
+  )); // 17
+
+// OR... same as:
+countSheep = (arrayOfSheeps) => arrayOfSheeps.filter(Boolean).length;
+
+console.log(countSheep(
+        [true,  true,  true,  false,
+        false,  true,  true,  true ,
+        true,  false, true,  false,
+        true,  false, false, false ,
+        true,  true,  true,  true ,
+        false, false, true,  true]
+)); // 15
+
+
+
+// Remove string spaces:
+noSpace = str => {
+
+} 
