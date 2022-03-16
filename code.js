@@ -469,7 +469,8 @@ const addsNumbers = (a, b) => {
     return a + b;
 }
 
-2. Refactor arrow function WITHOUT curly braces */
+2. Refactor arrow function WITHOUT curly braces */// addHero(heroes.filter((hero => hero.powers.canFly)));
+
 const addsNumbers = (a, b) => a + b; // with no curly braces, return is implied.
 
 const result = addsNumbers(3, 5)
@@ -1665,19 +1666,18 @@ console.log(countSheep(
 // Input:    145263  --->  Output: 654321
 // Input: 123456789  --->  Output: 987654321
 
-descendingOrder = (num) => {
-    return Number(num.toString().split('').sort((a, b) => b - a).join(''));    
-}
+descendingOrder = num => Number(num.toString().split('').sort((a, b) => b - a).join(''));    
+// .split converts to an array, .join converts to a string, .sort sorts in ascending (a - b) or descending (b - a)
     
-    // tests
-    console.log("-----Tests for Descending Order-----");
-    console.log("--If code is correct, console log shows true--");
-    console.log(descendingOrder(0) === 0);
-    console.log(descendingOrder(1) === 1);
-    console.log(descendingOrder(111) === 111);
-    console.log(descendingOrder(15) === 51);
-    console.log(descendingOrder(1021) === 2110);
-    console.log(descendingOrder(123456789) === 987654321);
+// tests
+console.log("-----Tests for Descending Order-----");
+console.log("--If code is correct, console log shows true--");
+console.log(descendingOrder(0) === 0);
+console.log(descendingOrder(1) === 1);
+console.log(descendingOrder(111) === 111);
+console.log(descendingOrder(15) === 51);
+console.log(descendingOrder(1021) === 2110);
+console.log(descendingOrder(123456789) === 987654321);
 
 
 
@@ -1685,3 +1685,58 @@ descendingOrder = (num) => {
 noSpace = str => {
 
 } 
+
+
+
+// What is the difference between a variable that is: null, undefined, or undeclared?
+
+
+
+// PRACTICE with .filter looping methods of objects inside arrays:
+let Contacts = [
+    {
+        name: "Jane Doe",
+        age: 21,
+        social_media: {
+            instagram: "jane.doe",
+            twitter: "jane_doe"
+        }
+    },
+    {
+        name: "John Doe",
+        age: 21,
+        social_media: {
+            instagram: "john.doe",
+            twitter: "john_doe"
+        }
+    },
+    {
+        name: "Mary Deer",
+        age: 21,
+        social_media: {
+            twitter: "mary_deer"
+        }
+    },
+    {
+        name: "Gary Deer",
+        age: 21,
+        social_media: {
+            twitter: "gary_deer"
+        }
+    }
+]
+
+// filter for each contacts name
+Contacts.filter(contact => {
+    console.log(contact.name)
+});
+
+// filter for each contact with NO instagram
+const noInstagram = Contacts.filter((contact) => {
+    return contact.name ? contact.social_media.hasOwnProperty("instagram") === false : []
+});
+console.log(noInstagram)
+
+// use Math.random() to choose a contact in the array randomly each time
+const randomContact = Contacts[Math.floor(Math.random() * Contacts.length)];
+console.log(randomContact)
