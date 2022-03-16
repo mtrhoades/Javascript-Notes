@@ -1740,3 +1740,30 @@ console.log(noInstagram)
 // use Math.random() to choose a contact in the array randomly each time
 const randomContact = Contacts[Math.floor(Math.random() * Contacts.length)];
 console.log(randomContact)
+
+
+
+// Refactoring practice:
+let myFunc = (x) => {
+    let y = ''
+    if (x == 0) {
+        y = true;
+    } else if (x === 1) {
+        y = false;
+    } else if (x === 2) {
+        y = true;
+    } else if (x === 3) {
+        y = false;
+    } else if (x === 4) {
+        y = true;
+    } else if (x === 5) {
+        y = false;
+    }
+    return y;
+}
+console.log(myFunc(3))
+
+// The function above basically is saying even numbers = true, odd numbers = false
+// same as:
+let myFuncs = x => y = true ? x % 2 === 0 : false;
+console.log(myFuncs(70))
