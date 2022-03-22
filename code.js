@@ -1682,15 +1682,27 @@ console.log(descendingOrder(123456789) === 987654321);
 
 
 // Remove string spaces:
-noSpace = str => {
+noSpace = str => str.split(' ').join('') // .split() --> splits string into sub-strings and returns an array, .join() --> joins an array of strings using a seperator, or in this case the space was the seperator when using .split() and there are no spaces when using .join()
 
-} 
-
-
-
-// What is the difference between a variable that is: null, undefined, or undeclared?
+console.log(noSpace('Hello World whats up yeah'));
 
 
+
+/* What is the difference between a variable that is: null, undefined, or undeclared?
+
+ 
+Null = nothing in memory, doesn't exist. (Falsey)
+undefined = not assigned any value.
+undeclared = needs to use let or const to declare variable properly.
+
+
+At the very end of interview, you are asked this common interview question by the employer:
+"Do you have any questions for us?"
+An answer of:  I have no questions for you, says you haven't done your homework on the company or aren't curious.  Not good.
+So, how would you respond to this?  Feel free to reply to this message with your answer
+
+
+*/
 
 // PRACTICE with .filter looping methods of objects inside arrays:
 let Contacts = [
@@ -1767,3 +1779,58 @@ console.log(myFunc(3))
 // same as:
 let myFuncs = x => y = true ? x % 2 === 0 : false;
 console.log(myFuncs(70))
+
+
+
+// Phone number function:
+createPhoneNumber = nums => {
+    numbers = nums.join(''); // join all the numbers together first.
+    return '(' + numbers.substring(0, 3) + ')' + ' ' + numbers.substring(3, 6) + '-' + numbers.substring(6)
+    // ^ use .substring(starting index, ending count)
+}
+console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
+console.log(createPhoneNumber([9, 1, 9, 4, 1, 4, 6, 4, 0, 7]));
+
+
+// function for greeting
+let greets = () => 'Hello World!'
+console.log(greets());
+
+
+
+// Because Nathan knows it is important to stay hydrated, he drinks 0.5 litres of water per hour of cycling.
+// You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value.
+
+const litres = hrs => Math.floor(hrs * 0.5) // Math.floor() rounds down to nearest integer (whole numbers).
+
+console.log(litres(3));
+console.log(litres(6.7));
+console.log(litres(11.8));
+
+
+// Using Math.random() to show a random fraction
+const randomFraction = () => Math.random();
+
+console.log(randomFraction());
+
+
+
+// Generate random whole numbers
+const randomWholeNum = () => Math.floor(Math.random() * 10);
+
+console.log(randomWholeNum());
+
+
+
+// Generate whole numbers within a range
+const randomRange = (myMin, myMax) => Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+
+console.log(randomRange(3, 10));
+
+
+
+// Using the parseInt() to turn a string into a number
+const convertToInteger = str => parseInt(str);
+
+console.log(convertToInteger("56"));
+console.log(convertToInteger("00009384758"));
