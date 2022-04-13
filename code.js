@@ -1815,10 +1815,7 @@ console.log(randomFraction());
 
 
 
-// Generate random whole numbers
-const randomWholeNum = () => Math.floor(Math.random() * 10);
-
-console.log(randomWholeNum());
+// Generate random whole numbersternar
 
 
 
@@ -1834,3 +1831,226 @@ const convertToInteger = str => parseInt(str);
 
 console.log(convertToInteger("56"));
 console.log(convertToInteger("00009384758"));
+
+
+
+/* Question of the Day:
+What is scope, i.e. global, local, block?
+
+In general terms, the scope will let us know at a given part of code, what are the variables and functions that we can or cannot access.
+There are three types of scopes in JS:
+Global Scope
+Local or Function Scope
+Block Scope
+Global Scope
+Variables or functions declared in the global namespace have global scope, which means all the variables and functions having global scope can be accessed from anywhere inside the code
+*/
+// var globalVariable = "Hello world";
+// function sendMessage(){
+//  return globalVariable; // can access globalVariable since it's written in global space
+// }
+// function sendMessage2(){
+//  return sendMessage(); // Can access sendMessage function since it's written in global space
+// }
+// sendMessage2(); // Returns “Hello world”
+// //Function Scope
+// //Any variables or functions declared inside a function have local/function scope, which means that all the variables and functions declared inside a function, can be accessed from within the function and not outside of it.
+// function awesomeFunction(){
+//  var a = 2;
+//  var multiplyBy2 = function(){
+//   console.log(a*2); // Can access variable "a" since a and multiplyBy2 both are written inside the same function
+//  }
+// }
+// console.log(a); // Throws reference error since a is written in local scope and cannot be accessed outside
+// multiplyBy2(); // Throws reference error since multiplyBy2 is written in local scope
+// //Block Scope
+// //Block scope is related to the variables declared using let and const. Variables declared with var do not have block scope.
+// //Block scope tells us that any variable declared inside a block { }, can be accessed only inside that block and cannot be accessed outside of it.
+// {
+//  let x = 45;
+// }
+// console.log(x); // Gives reference error since x cannot be accessed outside of the block
+// for(let i=0; i<2; i++){
+//  // do something
+// }
+// console.log(i); // Gives reference error since i cannot be accessed outside of the for loop block
+
+
+// Vowel Count
+function getVowelCount(str) {
+    let vowelsCount = 0;
+    let vowels = ["a", "e", "i", "o", "u"];
+
+    for(let i =0; i < str.length; i++) {
+        if(vowels.includes(str[i])) {
+            vowelsCount ++
+        }
+    }
+    return vowelsCount;
+}
+console.log(getVowelCount("bear"))
+
+// OR same as...
+function getVowelCounts(str) {
+    let vowels = ["a", "e", "i", "o", "u"];
+    const arr = str.split('')
+
+    return arr.filter((letter) => {
+        return vowels.includes(letter)
+    }).length
+}
+console.log(getVowelCounts('hello'))
+
+// OR same as...
+function getVowelsCount(str) {
+    let vowelsCount = 0;
+    let arr = str.split("");
+    let vowels = ["a", "e", "i", "o", "u"];
+    
+    for (let i of arr) {
+    if (vowels.includes(i)) {
+    vowelsCount++;
+        }
+    }
+    
+    return vowelsCount;
+} 
+console.log(getVowelsCount("heeeellllooo"))
+
+
+
+// Return century for the year
+let century = year => Math.floor((year - 1)/100) + 1 + "th";
+
+console.log(century(1998));
+console.log(century(1698));
+console.log(century(1501));
+console.log(century(2022));
+
+// OR same as ...
+let centuries = year => Math.ceil(year/100) + "th";
+
+console.log(centuries(1698));
+console.log(centuries(1501));
+console.log(centuries(2022));
+console.log(centuries(1998));
+
+// Math.ciel() = rounds up (to the ceiling!) 
+// Math.floor() = rounds down (to the floor!)
+
+
+
+// Turn any string into a whole integer (number):
+let stringToNumber = str => parseInt(str);
+
+console.log(stringToNumber('4734'))
+
+
+
+/* Your task is to create a function that does four basic mathematical operations.
+
+The function should take three arguments - operation(string/char), value1(number), value2(number).
+The function should return result of numbers after applying the chosen operation.
+
+*/
+
+const basicOp = (operation, value1, value2) => {
+    let sum = 0;
+    if (operation === '+') {
+        sum = value1 + value2
+    } else if (operation === '-') {
+        sum = value1 - value2
+    } else if (operation === '*') {
+        sum = value1 * value2
+    } else if (operation === '/') {
+        sum = value1 / value2
+    }
+    return sum
+}
+
+console.log(basicOp('+', 4, 7));
+console.log(basicOp('-', 15, 18));
+console.log(basicOp('*', 5, 5));
+console.log(basicOp('/', 49, 7));
+
+// or this ...
+
+const basicOps = (operation, value1, value2) => {
+    switch (operation) {
+        case '+':
+            return value1 + value2;
+        case '-':
+            return value1 - value2;
+        case '*':
+            return value1 * value2;
+        case '/':
+            return value1 / value2;
+        default:
+            return 0;
+    }
+}
+
+console.log(basicOps('+', 4, 7));
+console.log(basicOps('-', 15, 18));
+console.log(basicOps('*', 5, 5));
+console.log(basicOps('/', 49, 7));
+
+// or this ...
+const basicsOp = (o, a, b) => {
+    return eval(a+o+b); // using the eval method
+}
+
+console.log(basicsOp('+', 4, 7));
+console.log(basicsOp('-', 15, 18));
+console.log(basicsOp('*', 5, 5));
+console.log(basicsOp('/', 49, 7));
+
+
+/* Write a method, that will get an integer array as parameter and will process every number from this array.
+Return a new array with processing every number of the input-array like this:
+If the number has an integer square root, take this, otherwise square the number.
+*/
+
+const squareOrSquareRoot = (array) => {
+    let newArray = array.map(number => {
+        if (Math.sqrt(number) % 1) {
+            return number * number
+        } else {
+            return Math.sqrt(number)
+        }
+    });
+    return newArray;    
+}
+
+console.log(squareOrSquareRoot([4, 3, 9, 7, 2, 1]));
+
+// or this ...
+const squareOrSquareRoots = array => array.map(number => {
+    return Math.sqrt(number) % 1 ? number * number  : Math.sqrt(number)
+});
+
+// ^ ternary: return (if this happends) ? return this : return that
+
+// Math.sqrt() takes the square root of any number passed in.
+
+console.log(squareOrSquareRoots([4, 3, 9, 7, 2, 1]));
+
+
+/* Write a function that will check if two given characters are the same case.
+
+If either of the characters is not a letter, return -1
+If both characters are the same case, return 1
+If both characters are letters, but not the same case, return 0
+*/
+
+const sameCase = (a, b) => {
+   return /[a-z]/i.test(a) && /[a-z]/i.test(b) ? Number(/[a-z]/.test(a) == /[a-z]/.test(b)) : -1
+}
+
+console.log(sameCase('a', 'g'));
+console.log(sameCase('A', 'C'));
+console.log(sameCase('b', 'G'));
+console.log(sameCase('B', 'g'));
+console.log(sameCase('0', '?'));
+
+
