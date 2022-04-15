@@ -2109,5 +2109,18 @@ console.log(unusedDigits([12, 34, 56, 78]));
 console.log(unusedDigits([2015, 8, 26]));
 
 
+// square every digit
+const squareDigits = (num) => {
+    return Number(num.toString().split('').map(number => number * number).join(''));
+}
+console.log(squareDigits(9119));
+
+// or refactor to this...
+const squareDigit = num => Number(num.toString().split('').map(number => number * number).join(''));
+
+console.log(squareDigit(9119));
+
+
+
 
 
