@@ -2078,3 +2078,13 @@ console.log(sameCase('0', '?'));
 */
 
 
+// Given a varying number of integer arguments, return the digits that are not present in any of them.
+
+const unusedDigits = (...array) => { // spread operator to spread out the numbers individually
+    let digits = array.join(); // join them again as a string
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter(number => !digits.includes(number)).join('') // return numbers not included in return array.
+}    
+        
+console.log(unusedDigits([12, 34, 56, 78]));
+console.log(unusedDigits([2015, 8, 26]));
+
