@@ -2054,3 +2054,27 @@ console.log(sameCase('B', 'g'));
 console.log(sameCase('0', '?'));
 
 
+/* linux ---> 
+    sudo apt update (must be entered first!)
+    sudo apt upgrade (these two commands update the packages and respositories associated to linux)
+    sudo apt full-upgrade (same as above but also removes packages already installed as to not just install ontop of it)
+    sudo apt install "program name" (installs a program)
+
+    sudo apt search "program name" (searches for programs)
+
+    sudo apt remove "program name" (uninstall program)
+    sudo apt purge
+
+    sudo apt autoremove (cleans up unnecessary packages, *use once a week to have plenty of free space)
+
+    apt show "package name" (shows all details)
+
+    use && symbol to do two commands at once
+
+    install multiple packages by just spacing them out after sudo apt install --
+
+    apt list (shows list of packages ready to be upgraded)
+
+*/
+
+
