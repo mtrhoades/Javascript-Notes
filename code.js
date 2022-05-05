@@ -1341,19 +1341,17 @@ const contacts = [
 
 // multiples of 3 or 5
 // takes any number as parameter and lists all the numbers below it that are divisible by 3 or 5 evenly, than adds them up to equal the sum that would be of all numbers in multiples of 3 & 5 below the number passed in.
-function muliplesOf3Or5(number) {
+function sumOfMuliplesOf3Or5(number) {
     let sum = 0;
     for (let i = 0; i < number; i++) {
         if (i % 3 === 0 || i % 5 === 0) {
             sum+=i;
-            continue;
-        } else {
-            continue;
-        }
+            console.log(sum+=i);
+        } 
     }
     return sum;
 }
-console.log(muliplesOf3Or5(12));
+console.log(sumOfMuliplesOf3Or5(12));
 
 
 // return the opposite integer (negative)
@@ -2121,6 +2119,21 @@ const squareDigit = num => Number(num.toString().split('').map(number => number 
 console.log(squareDigit(9119));
 
 
+// return highest and lowest numbers when given a string of multiple numbers.
+const highAndLow = (numbers) => {
+    console.log(numbers)
 
+    let strNumbers = numbers.split(" "); // splits numbers into ARRAY of strings for each number and takes away the space in-between.
+    console.log(strNumbers);
+
+    console.log(...strNumbers); // ()...strNumbers) puts the multiple strings back together with spaces inbetween
+
+    return `${Math.max(...strNumbers)} ${Math.min(...strNumbers)}`;
+    // returns template literal for highest (max) and lowest (min) numbers in the spread out string.
+}
+
+console.log(highAndLow("1 2 3 4 5"));
+console.log(highAndLow("1 2 -3 4 5"));
+console.log(highAndLow("1 9 3 4 -5"));
 
 
