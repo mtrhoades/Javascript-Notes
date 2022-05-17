@@ -1903,6 +1903,7 @@ console.log(getVowelCounts('hello'))
 function getVowelsCount(str) {
     let vowelsCount = 0;
     let arr = str.split("");
+    // console.log(arr)
     let vowels = ["a", "e", "i", "o", "u"];
     
     for (let i of arr) {
@@ -2135,5 +2136,22 @@ const highAndLow = (numbers) => {
 console.log(highAndLow("1 2 3 4 5"));
 console.log(highAndLow("1 2 -3 4 5"));
 console.log(highAndLow("1 9 3 4 -5"));
+
+
+
+// Disemvowell Trolls - function to remove all vowels in sentence.
+const disemvowel = (str) => {
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    let newStr = '';
+    for (let i = 0; i < str.length; i++) {
+      let char = str.charAt(i);
+      if (vowels.indexOf(char) == -1) {
+        newStr += char;
+      }
+    }
+      return newStr;
+};
+
+console.log(disemvowel("This website is for losers LOL!"));
 
 
